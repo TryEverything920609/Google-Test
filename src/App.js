@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Amplify, Auth, Hub } from 'aws-amplify';
+import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
 import awsConfig from './aws-exports';
 
 const isLocalhost = Boolean(
@@ -69,7 +70,7 @@ function App() {
       {user ? (
         <button onClick={() => Auth.signOut()}>Sign Out</button>
       ) : (
-        <button onClick={() => Auth.federatedSignIn()}>Federated Sign In</button>
+        <button onClick={() => Auth.federatedSignIn({provider: CognitoHostedUIIdentityProvider.Google })}>Google Sign In</button>
       )}
     </div>
   );
